@@ -24,8 +24,9 @@ const Navbar = () => {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/90 backdrop-blur-md border-b border-border">
       <div className="container flex items-center justify-between h-16 md:h-20">
-        <button onClick={() => scrollTo("#inicio")} className="font-serif text-xl md:text-2xl font-semibold text-primary tracking-tight">
-          Óptica San Francisco
+        <button onClick={() => scrollTo("#inicio")} className="text-left leading-none">
+          <span className="block font-serif text-xl md:text-2xl font-medium text-primary tracking-tight">Óptica San Francisco</span>
+          <span className="block text-[10px] font-sans uppercase tracking-[0.3em] text-muted-foreground mt-1">Desde 1982</span>
         </button>
 
         {/* Desktop */}

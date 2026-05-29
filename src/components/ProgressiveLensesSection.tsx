@@ -24,13 +24,13 @@ const ProgressiveLensesSection = () => (
           <p className="text-sm font-sans font-semibold uppercase tracking-widest text-primary mb-3">
             Lentes progresivas premium
           </p>
-          <h2 className="text-3xl md:text-4xl font-serif font-semibold mb-6 leading-snug">
-            Mimética Pro de Indo
+          <h2 className="text-3xl md:text-5xl font-serif font-medium mb-6 leading-tight">
+            Mimetika Pro de Indo
           </h2>
           <p className="text-muted-foreground font-sans leading-relaxed mb-6">
-            Las lentes progresivas Mimética Pro representan lo último en tecnología óptica.
-            Se adaptan a tu forma única de mirar, ofreciendo una visión clara y cómoda
-            a cualquier distancia, desde leer el móvil hasta conducir.
+            Nuestras lentes progresivas más cuidadas. Personalizadas según tu forma única
+            de mirar, para que la adaptación sea natural y la visión, clara a cualquier distancia.
+            Te explicamos con calma si son la opción adecuada para ti.
           </p>
           <ul className="space-y-3 mb-8">
             {features.map((f) => (
@@ -42,9 +42,10 @@ const ProgressiveLensesSection = () => (
           </ul>
           <Button
             size="lg"
+            className="rounded-sm"
             onClick={() => document.querySelector("#reserva")?.scrollIntoView({ behavior: "smooth" })}
           >
-            Reservar estudio visual
+            Pide tu estudio visual
           </Button>
         </motion.div>
 
@@ -57,7 +58,7 @@ const ProgressiveLensesSection = () => (
         >
           <img
             src={lensesImg}
-            alt="Lentes progresivas Mimética Pro de Indo"
+            alt="Lentes progresivas Mimetika Pro de Indo"
             className="rounded-lg shadow-elevated w-full object-cover aspect-[4/3]"
           />
         </motion.div>

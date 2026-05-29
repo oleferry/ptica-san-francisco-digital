@@ -40,9 +40,12 @@ const BlogSection = () => (
         <p className="text-sm font-sans font-semibold uppercase tracking-widest text-primary mb-3">
           Blog de salud visual
         </p>
-        <h2 className="text-3xl md:text-4xl font-serif font-semibold">
-          Artículos para cuidar tu visión
+        <h2 className="text-3xl md:text-5xl font-serif font-medium">
+          Ver bien es calidad de vida
         </h2>
+        <p className="text-muted-foreground font-sans mt-4 max-w-xl mx-auto">
+          Explicamos con calma lo que conviene saber sobre tu visión, sin tecnicismos innecesarios.
+        </p>
       </motion.div>
 
       <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
