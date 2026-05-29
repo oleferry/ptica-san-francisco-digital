@@ -22,21 +22,24 @@ const HeroSection = () => {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="max-w-2xl"
         >
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-semibold leading-tight text-primary-foreground mb-6">
-            Cuidando la visión de León desde hace más de 40 años.
+          <p className="text-xs md:text-sm font-sans font-medium uppercase tracking-[0.25em] text-primary-foreground/70 mb-5">
+            Óptica San Francisco · León · Desde 1982
+          </p>
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-medium leading-[1.1] text-primary-foreground mb-6">
+            Cuidando tu visión <br className="hidden md:block" />con la confianza de toda la vida.
           </h1>
-          <p className="text-lg md:text-xl text-primary-foreground/80 mb-8 leading-relaxed font-sans">
-            Atención cercana, revisiones sin prisas y soluciones adaptadas a cada persona.
+          <p className="text-lg md:text-xl text-primary-foreground/85 mb-10 leading-relaxed font-sans font-light max-w-xl">
+            Más de 40 años atendiendo a León con calma, criterio y soluciones visuales personalizadas.
           </p>
           <div className="flex flex-wrap gap-4">
-            <Button size="lg" onClick={() => scrollTo("#reserva")} className="text-base px-8">
-              Reservar cita
+            <Button size="lg" onClick={() => scrollTo("#reserva")} className="text-base px-8 rounded-sm">
+              Reserva tu cita con tranquilidad
             </Button>
             <Button
               size="lg"
               variant="outline"
               onClick={() => scrollTo("#servicios")}
-              className="text-base px-8 border-primary-foreground/40 text-primary-foreground hover:bg-primary-foreground/10"
+              className="text-base px-8 rounded-sm border-primary-foreground/40 bg-transparent text-primary-foreground hover:bg-primary-foreground/10"
             >
               Conocer nuestros servicios
             </Button>
