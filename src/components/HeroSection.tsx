@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import heroImg from "@/assets/hero-optica.jpg";
+import heroImg from "@/assets/hero-leon-catedral.png";
 
 const HeroSection = () => {
   const scrollTo = (id: string) => {
@@ -8,11 +8,15 @@ const HeroSection = () => {
   };
 
   return (
-    <section id="inicio" className="relative min-h-[90vh] flex items-center pt-20">
+    <section id="inicio" className="relative min-h-[92vh] flex items-center pt-20">
       {/* Background image */}
       <div className="absolute inset-0">
-        <img src={heroImg} alt="Interior de Óptica San Francisco en León" className="w-full h-full object-cover" />
-        <div className="absolute inset-0 bg-gradient-to-r from-foreground/80 via-foreground/60 to-foreground/20" />
+        <img
+          src={heroImg}
+          alt="Catedral de León vista nítidamente a través de unas gafas"
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-foreground/85 via-foreground/55 to-foreground/10" />
       </div>
 
       <div className="container relative z-10">

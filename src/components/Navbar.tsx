@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Menu, X, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import logo from "@/assets/logo-osf.png";
 
 const navLinks = [
   { label: "Inicio", href: "#inicio" },
@@ -24,9 +25,12 @@ const Navbar = () => {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/90 backdrop-blur-md border-b border-border">
       <div className="container flex items-center justify-between h-16 md:h-20">
-        <button onClick={() => scrollTo("#inicio")} className="text-left leading-none">
-          <span className="block font-serif text-xl md:text-2xl font-medium text-primary tracking-tight">Óptica San Francisco</span>
-          <span className="block text-[10px] font-sans uppercase tracking-[0.3em] text-muted-foreground mt-1">Desde 1982</span>
+        <button onClick={() => scrollTo("#inicio")} className="flex items-center gap-3 text-left leading-none">
+          <img src={logo} alt="Óptica San Francisco" className="h-12 md:h-14 w-auto" />
+          <span className="hidden sm:block">
+            <span className="block font-serif text-lg md:text-xl font-medium text-primary tracking-tight">Óptica San Francisco</span>
+            <span className="block text-[10px] font-sans uppercase tracking-[0.3em] text-muted-foreground mt-1">Desde 1982</span>
+          </span>
         </button>
 
         {/* Desktop */}
