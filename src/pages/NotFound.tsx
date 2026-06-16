@@ -1,6 +1,6 @@
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
-import { Helmet } from "react-helmet-async";
+import { Head } from "vite-react-ssg";
 import { Button } from "@/components/ui/button";
 import { Home } from "lucide-react";
 
@@ -13,10 +13,10 @@ const NotFound = () => {
 
   return (
     <>
-      <Helmet>
+      <Head>
         <title>Página no encontrada | Óptica San Francisco</title>
         <meta name="robots" content="noindex, follow" />
-      </Helmet>
+      </Head>
       <div className="flex min-h-screen items-center justify-center bg-background px-6">
         <div className="text-center max-w-md">
           <p className="font-serif text-7xl md:text-8xl font-medium text-primary mb-4">404</p>

@@ -3,6 +3,7 @@ import { Menu, X, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import logo from "@/assets/logo-osf.webp";
 import { SITE } from "@/lib/site";
+import { useSectionNav } from "@/hooks/use-section-nav";
 
 const navLinks = [
   { label: "Inicio", href: "#inicio" },
@@ -17,11 +18,11 @@ const navLinks = [
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
+  const goToSection = useSectionNav();
 
   const scrollTo = (href: string) => {
     setOpen(false);
-    const el = document.querySelector(href);
-    el?.scrollIntoView({ behavior: "smooth" });
+    goToSection(href);
   };
 
   return (

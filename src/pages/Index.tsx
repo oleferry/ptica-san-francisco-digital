@@ -1,3 +1,4 @@
+import HomeSeo from "@/components/HomeSeo";
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import AboutSection from "@/components/AboutSection";
@@ -14,6 +15,7 @@ import PromoPopup from "@/components/PromoPopup";
 
 const Index = () => (
   <>
+    <HomeSeo />
     <Navbar />
     <main>
       <HeroSection />

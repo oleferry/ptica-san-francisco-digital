@@ -1,37 +1,47 @@
 import { Link } from "react-router-dom";
+import { Head } from "vite-react-ssg";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import WhatsAppButton from "@/components/WhatsAppButton";
 import { articles, formatDate } from "@/lib/blog";
+import { SITE } from "@/lib/site";
 
-const BlogSection = () => {
-  const latest = articles.slice(0, 4);
+const BlogIndex = () => (
+  <>
+    <Head>
+      <title>Blog de salud visual | Óptica San Francisco</title>
+      <meta
+        name="description"
+        content="Consejos sobre salud visual, gafas progresivas, lentillas y cuidado de la vista, explicados con calma por Óptica San Francisco (León)."
+      />
+      <link rel="canonical" href={`${SITE.url}/blog`} />
+    </Head>
 
-  return (
-    <section id="blog" className="py-20 md:py-28">
+    <Navbar />
+    <main className="pt-28 md:pt-32 pb-20 md:pb-28">
       <div className="container">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mb-14"
-        >
+        <div className="text-center mb-14 max-w-2xl mx-auto">
           <p className="text-sm font-sans font-semibold uppercase tracking-widest text-primary mb-3">
             Blog de salud visual
           </p>
-          <h2 className="text-3xl md:text-5xl font-serif font-medium">Ver bien es calidad de vida</h2>
-          <p className="text-muted-foreground font-sans mt-4 max-w-xl mx-auto">
+          <h1 className="text-3xl md:text-5xl font-serif font-medium mb-4">
+            Ver bien es calidad de vida
+          </h1>
+          <p className="text-muted-foreground font-sans">
             Explicamos con calma lo que conviene saber sobre tu visión, sin tecnicismos innecesarios.
           </p>
-        </motion.div>
+        </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {latest.map((p, i) => (
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+          {articles.map((p, i) => (
             <motion.article
               key={p.slug}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.08 }}
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{ delay: i * 0.06 }}
             >
               <Link
                 to={`/blog/${p.slug}`}
@@ -42,9 +52,9 @@ const BlogSection = () => {
                   <span className="text-xs font-sans font-semibold uppercase tracking-wider text-primary">
                     {p.category}
                   </span>
-                  <h3 className="font-serif text-lg font-semibold mt-2 mb-3 group-hover:text-primary transition-colors leading-snug">
+                  <h2 className="font-serif text-lg font-semibold mt-2 mb-3 group-hover:text-primary transition-colors leading-snug">
                     {p.title}
-                  </h3>
+                  </h2>
                   <p className="text-sm text-muted-foreground font-sans leading-relaxed mb-4">
                     {p.description}
                   </p>
@@ -57,19 +67,11 @@ const BlogSection = () => {
             </motion.article>
           ))}
         </div>
-
-        <div className="text-center mt-12">
-          <Link
-            to="/blog"
-            className="inline-flex items-center gap-2 font-sans font-medium text-primary hover:gap-3 transition-all"
-          >
-            Ver todas las entradas
-            <ArrowRight className="w-4 h-4" />
-          </Link>
-        </div>
       </div>
-    </section>
-  );
-};
+    </main>
+    <Footer />
+    <WhatsAppButton />
+  </>
+);
 
-export default BlogSection;
+export default BlogIndex;

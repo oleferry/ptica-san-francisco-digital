@@ -1,6 +1,8 @@
+import { Link } from "react-router-dom";
 import { Instagram, Facebook, MapPin, Phone, Mail } from "lucide-react";
 import logo from "@/assets/logo-osf.webp";
 import { SITE } from "@/lib/site";
+import { useSectionNav } from "@/hooks/use-section-nav";
 
 const navLinks = [
   { label: "Sobre nosotros", href: "#sobre-nosotros" },
@@ -12,7 +14,10 @@ const navLinks = [
   { label: "Contacto", href: "#contacto" },
 ];
 
-const Footer = () => (
+const Footer = () => {
+  const goToSection = useSectionNav();
+
+  return (
   <footer className="border-t border-border bg-card">
     <div className="container py-14">
       <div className="grid gap-10 md:grid-cols-3 lg:gap-16">
@@ -50,14 +55,22 @@ const Footer = () => (
           <ul className="space-y-2">
             {navLinks.map((l) => (
               <li key={l.href}>
-                <a
-                  href={l.href}
-                  className="text-sm text-muted-foreground font-sans hover:text-primary transition-colors"
+                <button
+                  onClick={() => goToSection(l.href)}
+                  className="text-sm text-muted-foreground font-sans hover:text-primary transition-colors text-left"
                 >
                   {l.label}
-                </a>
+                </button>
               </li>
             ))}
+            <li>
+              <Link
+                to="/blog"
+                className="text-sm text-muted-foreground font-sans hover:text-primary transition-colors"
+              >
+                Blog
+              </Link>
+            </li>
           </ul>
         </div>
 
@@ -94,6 +107,7 @@ const Footer = () => (
       </div>
     </div>
   </footer>
-);
+  );
+};
 
 export default Footer;
