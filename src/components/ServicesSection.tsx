@@ -55,13 +55,14 @@ const ServicesSection = () => (
         {services.map((s, i) => (
           <motion.div
             key={s.title}
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: i * 0.08 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ delay: i * 0.08, duration: 0.5, ease: "easeOut" }}
+            whileHover={{ y: -6 }}
             className="group p-6 md:p-8 rounded-lg bg-card shadow-card hover:shadow-elevated transition-shadow border border-border"
           >
-            <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-5 group-hover:bg-primary/20 transition-colors">
+            <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-5 transition-all duration-300 group-hover:bg-primary/20 group-hover:scale-110">
               <s.icon className="w-6 h-6 text-primary" />
             </div>
             <h3 className="font-serif text-xl font-semibold mb-3">{s.title}</h3>

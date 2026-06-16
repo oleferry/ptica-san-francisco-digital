@@ -1,5 +1,9 @@
 import { motion } from "framer-motion";
-import { CalendarDays } from "lucide-react";
+import { CalendarDays, ExternalLink } from "lucide-react";
+
+// Página de reservas online (SimplyBook.me). El color de marca se configura en
+// SimplyBook → Settings → Design para que coincida con el verde de la web.
+const SIMPLYBOOK_URL = "https://opticasanfrancisco.simplybook.it/v2/";
 
 const BookingSection = () => (
   <section id="reserva" className="py-20 md:py-28">
@@ -20,12 +24,11 @@ const BookingSection = () => (
           Reserva tu cita con tranquilidad
         </h2>
         <p className="text-muted-foreground font-sans leading-relaxed mb-10 max-w-xl mx-auto">
-          Elige el servicio que necesitas y selecciona la hora que mejor te venga. 
+          Elige el servicio que necesitas y selecciona la hora que mejor te venga.
           Nos tomamos el tiempo necesario para atenderte como mereces.
         </p>
       </motion.div>
 
-      {/* SimplyBook iframe placeholder */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -33,27 +36,26 @@ const BookingSection = () => (
         transition={{ delay: 0.15 }}
         className="max-w-3xl mx-auto rounded-lg border border-border bg-card shadow-soft overflow-hidden"
       >
-        <div className="p-8 md:p-12 text-center">
-          <p className="text-muted-foreground font-sans mb-4">
-            Aquí se integrará tu widget de SimplyBook.me
-          </p>
-          <p className="text-sm text-muted-foreground/70 font-sans">
-            Para activar la reserva online, añade tu URL de SimplyBook en el iframe de este componente.
-          </p>
-          {/* 
-            Reemplaza este div con:
-            <iframe 
-              src="https://TU-NEGOCIO.simplybook.me/v2/" 
-              width="100%" 
-              height="600" 
-              frameBorder="0"
-            />
-          */}
-          <div className="mt-6 h-80 rounded-md bg-muted flex items-center justify-center">
-            <span className="text-muted-foreground text-sm">Espacio para iframe de SimplyBook</span>
-          </div>
-        </div>
+        <iframe
+          title="Reserva de cita en Óptica San Francisco"
+          src={SIMPLYBOOK_URL}
+          className="w-full"
+          style={{ height: 720, border: 0 }}
+          loading="lazy"
+        />
       </motion.div>
+
+      <p className="text-center text-sm text-muted-foreground font-sans mt-5">
+        ¿Prefieres abrir la reserva en una ventana nueva?{" "}
+        <a
+          href={SIMPLYBOOK_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-primary font-medium inline-flex items-center gap-1 hover:underline"
+        >
+          Abrir reservas <ExternalLink className="w-3.5 h-3.5" />
+        </a>
+      </p>
     </div>
   </section>
 );

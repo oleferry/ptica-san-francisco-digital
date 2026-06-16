@@ -1,0 +1,15 @@
+FOTOS DEL EQUIPO
+================
+
+Coloca aquí las dos fotos del equipo con EXACTAMENTE estos nombres:
+
+  - elisa-rivero.jpg     -> Elisa Rivero Tomé (óptico-optometrista)
+  - yolanda-pedrero.jpg  -> Yolanda Pedrero (directora técnica)
+
+Recomendado: fotos verticales (retrato), formato JPG.
+No te preocupes por el tamaño: después se optimizan con
+  node scripts/optimize-images.mjs
+(o se pueden dejar tal cual; conviene que no superen ~1-2 MB).
+
+Si el nombre/rol de cada persona no es correcto, edítalo en:
+  src/components/TeamSection.tsx

@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
-import { MapPin, Phone, Clock, MessageCircle } from "lucide-react";
+import { MapPin, Phone, Clock, MessageCircle, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { SITE, whatsappLink } from "@/lib/site";
 
 const ContactSection = () => (
   <section id="contacto" className="py-20 md:py-28 bg-secondary">
@@ -34,7 +35,8 @@ const ContactSection = () => (
             <div>
               <h3 className="font-serif font-semibold mb-1">Dirección</h3>
               <p className="text-muted-foreground font-sans text-sm">
-                Calle San Francisco, 12<br />24003 León, España
+                {SITE.address.street}<br />
+                {SITE.address.postalCode} {SITE.address.city}, {SITE.address.country}
               </p>
             </div>
           </div>
@@ -46,7 +48,19 @@ const ContactSection = () => (
             <div>
               <h3 className="font-serif font-semibold mb-1">Teléfono</h3>
               <p className="text-muted-foreground font-sans text-sm">
-                <a href="tel:+34987000000" className="hover:text-primary transition-colors">987 000 000</a>
+                <a href={SITE.phoneHref} className="hover:text-primary transition-colors">{SITE.phoneDisplay}</a>
+              </p>
+            </div>
+          </div>
+
+          <div className="flex gap-4">
+            <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
+              <Mail className="w-5 h-5 text-primary" />
+            </div>
+            <div>
+              <h3 className="font-serif font-semibold mb-1">Email</h3>
+              <p className="text-muted-foreground font-sans text-sm">
+                <a href={`mailto:${SITE.email}`} className="hover:text-primary transition-colors">{SITE.email}</a>
               </p>
             </div>
           </div>
@@ -57,22 +71,25 @@ const ContactSection = () => (
             </div>
             <div>
               <h3 className="font-serif font-semibold mb-1">Horario</h3>
-              <p className="text-muted-foreground font-sans text-sm">
-                Lunes a Viernes: 10:00 – 14:00 / 17:00 – 20:00<br />
-                Sábados: 10:00 – 14:00
-              </p>
+              <ul className="text-muted-foreground font-sans text-sm space-y-0.5">
+                {SITE.hoursDisplay.map((h) => (
+                  <li key={h.days}>
+                    <span className="text-foreground/80">{h.days}:</span> {h.time}
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
 
           <div className="flex flex-wrap gap-3 pt-4">
             <Button asChild>
-              <a href="tel:+34987000000">
+              <a href={SITE.phoneHref}>
                 <Phone className="w-4 h-4 mr-2" />
                 Llamar
               </a>
             </Button>
             <Button variant="outline" asChild>
-              <a href="https://wa.me/34987000000" target="_blank" rel="noopener noreferrer">
+              <a href={whatsappLink} target="_blank" rel="noopener noreferrer">
                 <MessageCircle className="w-4 h-4 mr-2" />
                 WhatsApp
               </a>
@@ -95,8 +112,8 @@ const ContactSection = () => (
           className="rounded-lg overflow-hidden shadow-soft border border-border min-h-[300px]"
         >
           <iframe
-            title="Ubicación de Óptica San Francisco en León"
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2950.5!2d-5.57!3d42.598!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sLe%C3%B3n%2C+Spain!5e0!3m2!1ses!2ses!4v1"
+            title="Ubicación de Óptica San Francisco en Plaza San Francisco 16, León"
+            src="https://maps.google.com/maps?q=%C3%93ptica%20San%20Francisco%2C%20Plaza%20San%20Francisco%2016%2C%20Le%C3%B3n&z=16&output=embed"
             width="100%"
             height="100%"
             style={{ border: 0, minHeight: 300 }}

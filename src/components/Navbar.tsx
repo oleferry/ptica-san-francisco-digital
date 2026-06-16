@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { Menu, X, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import logo from "@/assets/logo-osf.png";
+import logo from "@/assets/logo-osf.webp";
+import { SITE } from "@/lib/site";
 
 const navLinks = [
   { label: "Inicio", href: "#inicio" },
   { label: "Sobre nosotros", href: "#sobre-nosotros" },
+  { label: "Equipo", href: "#equipo" },
   { label: "Servicios", href: "#servicios" },
   { label: "Progresivas", href: "#progresivas" },
   { label: "Test visual", href: "#test-visual" },
@@ -51,7 +53,7 @@ const Navbar = () => {
 
         {/* Mobile toggle */}
         <div className="flex items-center gap-2 lg:hidden">
-          <a href="tel:+34987000000" className="p-2 text-primary">
+          <a href={SITE.phoneHref} aria-label="Llamar a Óptica San Francisco" className="p-2 text-primary">
             <Phone className="w-5 h-5" />
           </a>
           <button onClick={() => setOpen(!open)} className="p-2 text-foreground">
