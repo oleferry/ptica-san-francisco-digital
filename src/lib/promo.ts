@@ -6,12 +6,12 @@ export const PROMO = {
   enabled: true,
 
   // Etiqueta pequeña arriba (opcional)
-  badge: "Edición limitada",
+  badge: "Eclipse solar",
   // Título de la promo
-  title: "Gafas para el eclipse solar",
+  title: "Gafas para ver el eclipse con seguridad",
   // Texto explicativo
   message:
-    "Reserva tus gafas homologadas para ver el eclipse solar con total seguridad. Unidades limitadas: déjanos tus datos y te avisamos para recogerlas en la óptica.",
+    "Para observar el eclipse solar conviene usar gafas homologadas. Si quieres, resérvalas con calma y te avisamos para recogerlas en la óptica.",
 
   // Botón de acción
   ctaLabel: "Reservar mis gafas",

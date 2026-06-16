@@ -1,11 +1,43 @@
 [
   {
+    "slug": "no-todos-los-progresivos-son-iguales",
+    "category": "Lentes progresivas",
+    "author": "Elisa Rivero Tomé",
+    "authorRole": "Óptico-optometrista",
+    "keywords": ["progresivos personalizados León", "Mimetika Pro Indo", "gafas progresivas León"],
+    "brief": "Por qué no todos los progresivos son iguales: la diferencia está en cómo se adaptan a tu forma de mirar, tus hábitos y tu día a día. Puedes mencionar los progresivos personalizados de alta gama Mimetika Pro de Indo y la importancia de una buena adaptación."
+  },
+  {
+    "slug": "que-esperar-de-una-revision-visual-sin-prisas",
+    "category": "Salud visual",
+    "author": "Yolanda Pedrero",
+    "authorRole": "Directora técnica",
+    "keywords": ["revisión visual León", "óptica León", "graduación de la vista"],
+    "brief": "Qué es una revisión visual cuidada y por qué merece la pena hacerla con calma: escuchar, analizar y explicar cada paso antes de recomendar, en lugar de un trámite rápido para vender gafas."
+  },
+  {
+    "slug": "la-atencion-no-termina-al-entregar-las-gafas",
+    "category": "Consejos para gafas",
+    "author": "Yolanda Pedrero",
+    "authorRole": "Directora técnica",
+    "keywords": ["ajuste de gafas León", "mantenimiento gafas", "seguimiento óptica"],
+    "brief": "La importancia del seguimiento tras comprar las gafas: ajustes, mantenimiento y acompañamiento. La relación con la óptica no termina en la entrega."
+  },
+  {
+    "slug": "lentillas-y-adaptaciones-complejas-cuando-acudir",
+    "category": "Lentillas",
+    "author": "Elisa Rivero Tomé",
+    "authorRole": "Óptico-optometrista",
+    "keywords": ["lentillas León", "adaptación de lentillas", "lentillas casos complejos"],
+    "brief": "Por qué las lentillas requieren una adaptación profesional y seguimiento, especialmente en casos complejos. La comodidad llega cuando hay criterio y experiencia detrás."
+  },
+  {
     "slug": "fatiga-visual-por-pantallas-sintomas-y-soluciones",
     "category": "Salud visual",
     "author": "Elisa Rivero Tomé",
     "authorRole": "Óptico-optometrista",
     "keywords": ["fatiga visual León", "vista cansada pantallas", "salud visual"],
-    "brief": "Qué es la fatiga visual digital, por qué aparece con el uso de pantallas y consejos prácticos para aliviarla."
+    "brief": "Qué es la fatiga visual digital, por qué aparece con el uso de pantallas y hábitos sencillos para aliviarla."
   },
   {
     "slug": "cada-cuanto-revisar-la-vista",
@@ -21,15 +53,7 @@
     "author": "Elisa Rivero Tomé",
     "authorRole": "Óptico-optometrista",
     "keywords": ["gafas de sol graduadas León", "protección solar ocular", "gafas de sol"],
-    "brief": "Por qué importan las gafas de sol homologadas y cómo elegir unas graduadas cómodas."
-  },
-  {
-    "slug": "ojo-seco-causas-y-cuidados",
-    "category": "Salud visual",
-    "author": "Yolanda Pedrero",
-    "authorRole": "Directora técnica",
-    "keywords": ["ojo seco León", "sequedad ocular", "lágrima artificial"],
-    "brief": "Síntomas del ojo seco, factores que lo agravan y hábitos para aliviarlo."
+    "brief": "Por qué importan las gafas de sol homologadas y cómo elegir unas graduadas cómodas, con tono estacional y sin presentarlo como descuento."
   },
   {
     "slug": "primeras-gafas-para-ninos-guia-para-padres",
@@ -38,29 +62,5 @@
     "authorRole": "Directora técnica",
     "keywords": ["gafas niños León", "óptica infantil León", "primeras gafas"],
     "brief": "Cómo ayudar a un niño a adaptarse a sus primeras gafas y qué tener en cuenta al elegirlas."
-  },
-  {
-    "slug": "lentillas-mensuales-diarias-o-progresivas-cual-elegir",
-    "category": "Lentillas",
-    "author": "Elisa Rivero Tomé",
-    "authorRole": "Óptico-optometrista",
-    "keywords": ["lentillas León", "tipos de lentillas", "adaptación de lentillas"],
-    "brief": "Diferencias entre lentillas diarias, mensuales y progresivas y para quién encaja cada una."
-  },
-  {
-    "slug": "luz-azul-y-pantallas-que-dice-la-evidencia",
-    "category": "Salud visual",
-    "author": "Elisa Rivero Tomé",
-    "authorRole": "Óptico-optometrista",
-    "keywords": ["filtro luz azul León", "luz azul pantallas", "lentes con filtro"],
-    "brief": "Qué se sabe sobre la luz azul de las pantallas y cuándo tiene sentido un filtro."
-  },
-  {
-    "slug": "como-cuidar-y-limpiar-tus-gafas",
-    "category": "Consejos para gafas",
-    "author": "Yolanda Pedrero",
-    "authorRole": "Directora técnica",
-    "keywords": ["limpiar gafas", "cuidado de gafas", "mantenimiento gafas León"],
-    "brief": "Buenas prácticas para limpiar las lentes sin rayarlas y mantener las gafas en buen estado."
   }
 ]
