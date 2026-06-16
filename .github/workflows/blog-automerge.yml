@@ -1,0 +1,37 @@
+name: Publicar artículos tras 48 h
+
+# Cada día a las 09:00 UTC: fusiona las PRs de blog con más de 48 h de antigüedad.
+on:
+  schedule:
+    - cron: "0 9 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  publicar:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fusionar PRs de blog con más de 48 h
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+          ahora=$(date -u +%s)
+          # PRs abiertas con la etiqueta auto-blog
+          gh pr list --label auto-blog --state open --json number,createdAt \
+            | jq -c '.[]' | while read -r pr; do
+              num=$(echo "$pr" | jq -r '.number')
+              creada=$(echo "$pr" | jq -r '.createdAt')
+              creada_ts=$(date -u -d "$creada" +%s)
+              horas=$(( (ahora - creada_ts) / 3600 ))
+              if [ "$horas" -ge 48 ]; then
+                echo "Fusionando PR #$num (${horas} h)"
+                gh pr merge "$num" --squash --delete-branch
+              else
+                echo "PR #$num aún en ventana de revisión (${horas} h)"
+              fi
+            done

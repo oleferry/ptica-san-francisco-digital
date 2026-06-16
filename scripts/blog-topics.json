@@ -1,0 +1,66 @@
+[
+  {
+    "slug": "fatiga-visual-por-pantallas-sintomas-y-soluciones",
+    "category": "Salud visual",
+    "author": "Elisa Rivero Tomé",
+    "authorRole": "Óptico-optometrista",
+    "keywords": ["fatiga visual León", "vista cansada pantallas", "salud visual"],
+    "brief": "Qué es la fatiga visual digital, por qué aparece con el uso de pantallas y consejos prácticos para aliviarla."
+  },
+  {
+    "slug": "cada-cuanto-revisar-la-vista",
+    "category": "Salud visual",
+    "author": "Yolanda Pedrero",
+    "authorRole": "Directora técnica",
+    "keywords": ["revisión visual León", "cada cuánto revisar la vista", "óptica León"],
+    "brief": "Con qué frecuencia conviene hacerse una revisión visual según la edad y las circunstancias."
+  },
+  {
+    "slug": "gafas-de-sol-graduadas-proteccion-y-comodidad",
+    "category": "Consejos para gafas",
+    "author": "Elisa Rivero Tomé",
+    "authorRole": "Óptico-optometrista",
+    "keywords": ["gafas de sol graduadas León", "protección solar ocular", "gafas de sol"],
+    "brief": "Por qué importan las gafas de sol homologadas y cómo elegir unas graduadas cómodas."
+  },
+  {
+    "slug": "ojo-seco-causas-y-cuidados",
+    "category": "Salud visual",
+    "author": "Yolanda Pedrero",
+    "authorRole": "Directora técnica",
+    "keywords": ["ojo seco León", "sequedad ocular", "lágrima artificial"],
+    "brief": "Síntomas del ojo seco, factores que lo agravan y hábitos para aliviarlo."
+  },
+  {
+    "slug": "primeras-gafas-para-ninos-guia-para-padres",
+    "category": "Visión infantil",
+    "author": "Yolanda Pedrero",
+    "authorRole": "Directora técnica",
+    "keywords": ["gafas niños León", "óptica infantil León", "primeras gafas"],
+    "brief": "Cómo ayudar a un niño a adaptarse a sus primeras gafas y qué tener en cuenta al elegirlas."
+  },
+  {
+    "slug": "lentillas-mensuales-diarias-o-progresivas-cual-elegir",
+    "category": "Lentillas",
+    "author": "Elisa Rivero Tomé",
+    "authorRole": "Óptico-optometrista",
+    "keywords": ["lentillas León", "tipos de lentillas", "adaptación de lentillas"],
+    "brief": "Diferencias entre lentillas diarias, mensuales y progresivas y para quién encaja cada una."
+  },
+  {
+    "slug": "luz-azul-y-pantallas-que-dice-la-evidencia",
+    "category": "Salud visual",
+    "author": "Elisa Rivero Tomé",
+    "authorRole": "Óptico-optometrista",
+    "keywords": ["filtro luz azul León", "luz azul pantallas", "lentes con filtro"],
+    "brief": "Qué se sabe sobre la luz azul de las pantallas y cuándo tiene sentido un filtro."
+  },
+  {
+    "slug": "como-cuidar-y-limpiar-tus-gafas",
+    "category": "Consejos para gafas",
+    "author": "Yolanda Pedrero",
+    "authorRole": "Directora técnica",
+    "keywords": ["limpiar gafas", "cuidado de gafas", "mantenimiento gafas León"],
+    "brief": "Buenas prácticas para limpiar las lentes sin rayarlas y mantener las gafas en buen estado."
+  }
+]
