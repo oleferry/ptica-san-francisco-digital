@@ -28,8 +28,9 @@ const ProgressiveLensesSection = () => (
             Mimetika Pro de Indo
           </h2>
           <p className="text-muted-foreground font-sans leading-relaxed mb-6">
-            Nuestras lentes progresivas más cuidadas. Personalizadas según tu forma única
-            de mirar, para que la adaptación sea natural y la visión, clara a cualquier distancia.
+            No todos los progresivos son iguales. Las Mimetika Pro son nuestras lentes más
+            cuidadas: personalizadas según tu forma de mirar, tus hábitos y tu día a día,
+            para que la adaptación sea natural y la visión, clara a cualquier distancia.
             Te explicamos con calma si son la opción adecuada para ti.
           </p>
           <ul className="space-y-3 mb-8">
