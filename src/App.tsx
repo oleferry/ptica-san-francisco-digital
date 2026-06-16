@@ -5,6 +5,7 @@ import type { RouteRecord } from "vite-react-ssg";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import Analytics from "@/components/Analytics";
 import Index from "./pages/Index.tsx";
 import BlogIndex from "./pages/BlogIndex.tsx";
 import BlogPost from "./pages/BlogPost.tsx";
@@ -22,6 +23,7 @@ const Layout = () => (
         <Toaster />
         <Sonner />
         <Outlet />
+        <Analytics />
       </TooltipProvider>
     </MotionConfig>
   </QueryClientProvider>
