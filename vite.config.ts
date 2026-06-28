@@ -12,7 +12,14 @@ function writeSitemap() {
   const slugs = fs.existsSync(blogDir)
     ? fs.readdirSync(blogDir).filter((f) => f.endsWith(".md")).map((f) => f.replace(/\.md$/, ""))
     : [];
-  const paths = ["/", "/blog", ...slugs.map((s) => `/blog/${s}`)];
+  const paths = [
+    "/",
+    "/blog",
+    ...slugs.map((s) => `/blog/${s}`),
+    "/aviso-legal",
+    "/politica-de-privacidad",
+    "/politica-de-cookies",
+  ];
   const xml =
     `<?xml version="1.0" encoding="UTF-8"?>\n` +
     `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n` +

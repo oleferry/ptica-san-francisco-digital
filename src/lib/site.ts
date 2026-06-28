@@ -61,6 +61,13 @@ export const SITE = {
     facebook: "https://www.facebook.com/opticasanfrancisco",
     facebookHandle: "@opticasanfrancisco",
   },
+
+  // Datos de la empresa (titular) para textos legales
+  legal: {
+    companyName: "Gafasvan, S.L.",
+    cif: "B-44902286",
+    registeredAddress: "Calle El Salvador, 4, 47680 Mayorga (Valladolid)",
+  },
 } as const;
 
 /** Enlace a WhatsApp con mensaje predefinido. */

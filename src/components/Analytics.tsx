@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Cookie } from "lucide-react";
@@ -80,7 +80,11 @@ const Analytics = () => {
               <p className="text-sm text-muted-foreground font-sans leading-relaxed">
                 Usamos cookies de analítica para entender cómo se usa la web y mejorarla.
                 Puedes aceptarlas o rechazarlas; si las rechazas, no se activará ningún
-                seguimiento.
+                seguimiento. Más información en nuestra{" "}
+                <Link to="/politica-de-cookies" className="text-primary underline hover:no-underline">
+                  Política de cookies
+                </Link>
+                .
               </p>
               <div className="flex flex-wrap gap-3 mt-4">
                 <Button size="sm" onClick={accept}>

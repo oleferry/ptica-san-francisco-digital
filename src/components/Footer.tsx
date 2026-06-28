@@ -100,7 +100,14 @@ const Footer = () => {
         </div>
       </div>
 
-      <div className="border-t border-border mt-10 pt-6 text-center">
+      <div className="border-t border-border mt-10 pt-6 text-center space-y-3">
+        <nav className="flex flex-wrap justify-center gap-x-4 gap-y-1 text-xs text-muted-foreground font-sans">
+          <Link to="/aviso-legal" className="hover:text-primary transition-colors">Aviso legal</Link>
+          <span aria-hidden="true">·</span>
+          <Link to="/politica-de-privacidad" className="hover:text-primary transition-colors">Política de privacidad</Link>
+          <span aria-hidden="true">·</span>
+          <Link to="/politica-de-cookies" className="hover:text-primary transition-colors">Política de cookies</Link>
+        </nav>
         <p className="text-sm text-muted-foreground font-sans">
           © {new Date().getFullYear()} {SITE.name} · {SITE.address.city}, {SITE.address.country}
         </p>
