@@ -28,6 +28,66 @@ function writeSitemap() {
   fs.writeFileSync(path.resolve(__dirname, "dist/sitemap.xml"), xml);
 }
 
+/** Parser sencillo de frontmatter (clave: valor). */
+function parseFrontmatter(raw: string): Record<string, string> {
+  const m = /^---\s*\n([\s\S]*?)\n---/.exec(raw);
+  const meta: Record<string, string> = {};
+  if (m) {
+    for (const line of m[1].split("\n")) {
+      const i = line.indexOf(":");
+      if (i > -1) meta[line.slice(0, i).trim()] = line.slice(i + 1).trim();
+    }
+  }
+  return meta;
+}
+
+/** Genera dist/feed.xml (RSS) con los artículos del blog. */
+function writeRss() {
+  const blogDir = path.resolve(__dirname, "src/content/blog");
+  if (!fs.existsSync(blogDir)) return;
+  const esc = (s: string) =>
+    String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+
+  const items = fs
+    .readdirSync(blogDir)
+    .filter((f) => f.endsWith(".md"))
+    .map((f) => {
+      const meta = parseFrontmatter(fs.readFileSync(path.join(blogDir, f), "utf8"));
+      return {
+        slug: f.replace(/\.md$/, ""),
+        title: meta.title ?? "",
+        description: meta.description ?? "",
+        date: meta.date ?? "",
+      };
+    })
+    .sort((a, b) => (a.date < b.date ? 1 : -1));
+
+  const xmlItems = items
+    .map(
+      (it) =>
+        `    <item>\n` +
+        `      <title>${esc(it.title)}</title>\n` +
+        `      <link>${SITE_URL}/blog/${it.slug}</link>\n` +
+        `      <guid>${SITE_URL}/blog/${it.slug}</guid>\n` +
+        (it.date ? `      <pubDate>${new Date(it.date).toUTCString()}</pubDate>\n` : "") +
+        `      <description>${esc(it.description)}</description>\n` +
+        `    </item>`,
+    )
+    .join("\n");
+
+  const xml =
+    `<?xml version="1.0" encoding="UTF-8"?>\n` +
+    `<rss version="2.0">\n  <channel>\n` +
+    `    <title>Blog · Óptica San Francisco</title>\n` +
+    `    <link>${SITE_URL}/blog</link>\n` +
+    `    <description>Consejos de salud visual de Óptica San Francisco (León).</description>\n` +
+    `    <language>es-ES</language>\n` +
+    xmlItems +
+    `\n  </channel>\n</rss>\n`;
+
+  fs.writeFileSync(path.resolve(__dirname, "dist/feed.xml"), xml);
+}
+
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
   server: {
@@ -47,6 +107,7 @@ export default defineConfig(({ mode }) => ({
   ssgOptions: {
     onFinished() {
       writeSitemap();
+      writeRss();
     },
   },
 }));
