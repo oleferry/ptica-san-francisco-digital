@@ -1,23 +1,26 @@
 /**
- * Genera un artículo del blog con la API de Claude (Opus 4.8) y lo guarda como
- * Markdown en src/content/blog/. Pensado para ejecutarse desde una GitHub Action.
+ * Genera un artículo del blog con la API de Claude (Opus 4.8) y una imagen de
+ * portada con OpenAI, y lo guarda como Markdown en src/content/blog/.
+ * Pensado para ejecutarse desde una GitHub Action.
  *
- * Requiere la variable de entorno ANTHROPIC_API_KEY.
- * Uso: node scripts/generate-article.mjs
+ * Variables de entorno:
+ *  - ANTHROPIC_API_KEY (obligatoria) — texto del artículo.
+ *  - OPENAI_API_KEY (opcional) — imagen de portada; si falta, se omite la imagen.
  *
  * Salvaguardas de calidad (contenido de salud / SEO local):
  *  - Tono de marca, cercano y sin tecnicismos.
  *  - PROHIBIDO inventar datos médicos, diagnósticos o promesas de salud.
- *  - Incluye aviso informativo y firma de la profesional.
- *  - Optimizado para SEO local de León.
+ *  - Aviso informativo + firma de la profesional. SEO local de León.
  */
 import Anthropic from "@anthropic-ai/sdk";
-import { readdirSync, readFileSync, writeFileSync } from "node:fs";
+import sharp from "sharp";
+import { readdirSync, readFileSync, writeFileSync, mkdirSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const BLOG_DIR = join(root, "src", "content", "blog");
+const COVERS_DIR = join(root, "public", "blog-covers");
 const TOPICS = JSON.parse(readFileSync(join(root, "scripts", "blog-topics.json"), "utf8"));
 
 // Slugs ya publicados (nombre de archivo = slug).
@@ -95,8 +98,13 @@ const response = await client.messages.create({
             description: "3-6 palabras clave",
           },
           body: { type: "string", description: "Cuerpo del artículo en Markdown" },
+          imagePrompt: {
+            type: "string",
+            description:
+              "Descripción breve (en español) de una escena fotográfica realista que ilustre el artículo, propia de una óptica tradicional y elegante. SIN texto, SIN logotipos y SIN rostros reconocibles.",
+          },
         },
-        required: ["title", "description", "keywords", "body"],
+        required: ["title", "description", "keywords", "body", "imagePrompt"],
         additionalProperties: false,
       },
     },
@@ -110,10 +118,51 @@ if (!textBlock) {
 }
 const article = JSON.parse(textBlock.text);
 
+/** Genera la imagen de portada con OpenAI siguiendo el estilo visual de marca. */
+async function generateCover(slug, scene) {
+  const key = process.env.OPENAI_API_KEY;
+  if (!key) {
+    console.log("Sin OPENAI_API_KEY: se omite la imagen de portada.");
+    return null;
+  }
+  // Estilo visual del Brand Playbook (cálido, realista, sin estética publicitaria).
+  const brandStyle =
+    "Estilo: fotografía hiperrealista, editorial y premium, cálida y elegante. Ambiente de óptica tradicional en León. Tonos beige, madera clara y verde oscuro. Luz natural suave. Tranquilo y profesional. SIN texto, SIN logotipos, SIN rostros reconocibles, sin estética de catálogo ni publicitaria.";
+  const prompt = `${scene}\n\n${brandStyle}`;
+
+  try {
+    const res = await fetch("https://api.openai.com/v1/images/generations", {
+      method: "POST",
+      headers: { Authorization: `Bearer ${key}`, "Content-Type": "application/json" },
+      body: JSON.stringify({ model: "gpt-image-1", prompt, size: "1024x1024", n: 1 }),
+    });
+    if (!res.ok) {
+      console.error("OpenAI (imagen) falló:", res.status, await res.text());
+      return null;
+    }
+    const data = await res.json();
+    const b64 = data?.data?.[0]?.b64_json;
+    if (!b64) {
+      console.error("Respuesta de imagen sin datos.");
+      return null;
+    }
+    mkdirSync(COVERS_DIR, { recursive: true });
+    const outPath = join(COVERS_DIR, `${slug}.jpg`);
+    await sharp(Buffer.from(b64, "base64")).jpeg({ quality: 82 }).toFile(outPath);
+    console.log(`Imagen de portada: public/blog-covers/${slug}.jpg`);
+    return `/blog-covers/${slug}.jpg`;
+  } catch (e) {
+    console.error("Error generando la imagen:", e.message);
+    return null;
+  }
+}
+
+const cover = await generateCover(topic.slug, article.imagePrompt);
+
 // Escapa comillas dobles en valores del frontmatter.
 const esc = (s) => String(s).replace(/"/g, "'");
 
-const frontmatter = [
+const frontmatterLines = [
   "---",
   `title: ${esc(article.title)}`,
   `slug: ${topic.slug}`,
@@ -123,9 +172,10 @@ const frontmatter = [
   `authorRole: ${topic.authorRole}`,
   `category: ${topic.category}`,
   `keywords: ${(article.keywords || topic.keywords).join(", ")}`,
-  "---",
-  "",
-].join("\n");
+];
+if (cover) frontmatterLines.push(`cover: ${cover}`);
+frontmatterLines.push("---", "");
+const frontmatter = frontmatterLines.join("\n");
 
 const filePath = join(BLOG_DIR, `${topic.slug}.md`);
 writeFileSync(filePath, frontmatter + article.body.trim() + "\n", "utf8");

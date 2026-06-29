@@ -58,6 +58,7 @@ function writeRss() {
         title: meta.title ?? "",
         description: meta.description ?? "",
         date: meta.date ?? "",
+        cover: meta.cover ?? "",
       };
     })
     .sort((a, b) => (a.date < b.date ? 1 : -1));
@@ -71,13 +72,17 @@ function writeRss() {
         `      <guid>${SITE_URL}/blog/${it.slug}</guid>\n` +
         (it.date ? `      <pubDate>${new Date(it.date).toUTCString()}</pubDate>\n` : "") +
         `      <description>${esc(it.description)}</description>\n` +
+        (it.cover
+          ? `      <enclosure url="${SITE_URL}${it.cover}" type="image/jpeg" />\n` +
+            `      <media:content url="${SITE_URL}${it.cover}" medium="image" />\n`
+          : "") +
         `    </item>`,
     )
     .join("\n");
 
   const xml =
     `<?xml version="1.0" encoding="UTF-8"?>\n` +
-    `<rss version="2.0">\n  <channel>\n` +
+    `<rss version="2.0" xmlns:media="http://search.yahoo.com/mrss/">\n  <channel>\n` +
     `    <title>Blog · Óptica San Francisco</title>\n` +
     `    <link>${SITE_URL}/blog</link>\n` +
     `    <description>Consejos de salud visual de Óptica San Francisco (León).</description>\n` +

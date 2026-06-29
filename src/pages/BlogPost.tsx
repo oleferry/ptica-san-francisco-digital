@@ -18,6 +18,7 @@ const BlogPost = () => {
   if (!article) return <Navigate to="/blog" replace />;
 
   const url = `${SITE.url}/blog/${article.slug}`;
+  const ogImage = article.cover ? `${SITE.url}${article.cover}` : `${SITE.url}/og-image.jpg`;
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
@@ -28,6 +29,7 @@ const BlogPost = () => {
     inLanguage: "es-ES",
     keywords: article.keywords.join(", "),
     author: { "@type": "Person", name: article.author, jobTitle: article.authorRole },
+    image: ogImage,
     publisher: {
       "@type": "Organization",
       name: SITE.name,
@@ -47,7 +49,7 @@ const BlogPost = () => {
         <meta property="og:title" content={article.title} />
         <meta property="og:description" content={article.description} />
         <meta property="og:url" content={url} />
-        <meta property="og:image" content={`${SITE.url}/og-image.jpg`} />
+        <meta property="og:image" content={ogImage} />
         <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
       </Head>
 
@@ -80,6 +82,15 @@ const BlogPost = () => {
               {formatDate(article.date)}
             </span>
           </div>
+
+          {article.cover && (
+            <img
+              src={article.cover}
+              alt={article.title}
+              className="w-full rounded-lg shadow-soft mb-10 aspect-[16/9] object-cover"
+              loading="lazy"
+            />
+          )}
 
           <div className="prose prose-neutral max-w-none font-sans prose-headings:font-serif prose-headings:font-semibold prose-a:text-primary prose-blockquote:border-l-primary prose-blockquote:text-muted-foreground prose-blockquote:font-sans prose-blockquote:not-italic">
             <ReactMarkdown remarkPlugins={[remarkGfm]}>{article.content}</ReactMarkdown>

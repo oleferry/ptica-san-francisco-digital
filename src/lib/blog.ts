@@ -24,6 +24,7 @@ export interface Article {
   authorRole: string;
   category: string;
   keywords: string[];
+  cover?: string; // ruta de la imagen de portada (p. ej. /blog-covers/slug.jpg)
   content: string;
 }
 
@@ -61,6 +62,7 @@ function parse(raw: string): Article {
       .split(",")
       .map((k) => k.trim())
       .filter(Boolean),
+    cover: meta.cover || undefined,
     content: body.trim(),
   };
 }

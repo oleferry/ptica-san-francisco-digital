@@ -47,7 +47,18 @@ const BlogIndex = () => (
                 to={`/blog/${p.slug}`}
                 className="group block h-full rounded-lg border border-border bg-card shadow-card hover:shadow-elevated transition-shadow overflow-hidden"
               >
-                <div className="h-2 bg-primary/80" />
+                {p.cover ? (
+                  <div className="aspect-[16/9] overflow-hidden bg-muted">
+                    <img
+                      src={p.cover}
+                      alt={p.title}
+                      loading="lazy"
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                  </div>
+                ) : (
+                  <div className="h-2 bg-primary/80" />
+                )}
                 <div className="p-6">
                   <span className="text-xs font-sans font-semibold uppercase tracking-wider text-primary">
                     {p.category}
