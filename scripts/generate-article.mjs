@@ -134,7 +134,7 @@ async function generateCover(slug, scene) {
     const res = await fetch("https://api.openai.com/v1/images/generations", {
       method: "POST",
       headers: { Authorization: `Bearer ${key}`, "Content-Type": "application/json" },
-      body: JSON.stringify({ model: "gpt-image-1", prompt, size: "1024x1024", n: 1 }),
+      body: JSON.stringify({ model: "gpt-image-2", prompt, size: "1024x1024", n: 1 }),
     });
     if (!res.ok) {
       console.error("OpenAI (imagen) falló:", res.status, await res.text());
