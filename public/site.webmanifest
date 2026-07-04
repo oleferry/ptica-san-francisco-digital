@@ -1,0 +1,12 @@
+{
+  "name": "Óptica San Francisco",
+  "short_name": "Óptica S.F.",
+  "description": "Óptica en León desde 1982.",
+  "icons": [
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ],
+  "theme_color": "#1F3A2E",
+  "background_color": "#E7E3D7",
+  "display": "standalone"
+}
