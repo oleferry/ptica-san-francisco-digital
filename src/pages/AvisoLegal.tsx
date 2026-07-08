@@ -1,6 +1,8 @@
 import LegalPage from "@/components/LegalPage";
 import { SITE, fullAddress } from "@/lib/site";
 
+const LAST_UPDATED = "8 de julio de 2026";
+
 const AvisoLegal = () => (
   <LegalPage
     title="Aviso legal"
@@ -69,6 +71,8 @@ const AvisoLegal = () => (
       controversia, las partes se someterán a los juzgados y tribunales que correspondan conforme
       a derecho.
     </p>
+
+    <p className="text-sm text-muted-foreground">Última actualización: {LAST_UPDATED}.</p>
   </LegalPage>
 );
 

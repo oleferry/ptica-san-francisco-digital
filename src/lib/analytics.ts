@@ -42,3 +42,16 @@ export function gaPageview(path: string): void {
     page_title: document.title,
   });
 }
+
+/** Borra (best-effort) las cookies de Google Analytics al retirar el consentimiento. */
+export function clearGaCookies(): void {
+  if (typeof document === "undefined") return;
+  const names = ["_ga", "_gid", `_ga_${GA_MEASUREMENT_ID.replace(/^G-/, "")}`];
+  const domains = [window.location.hostname, `.${window.location.hostname}`];
+  for (const name of names) {
+    for (const domain of domains) {
+      document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/; domain=${domain}`;
+    }
+    document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/`;
+  }
+}

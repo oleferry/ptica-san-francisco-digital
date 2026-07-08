@@ -3,9 +3,11 @@ import { useLocation, Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Cookie } from "lucide-react";
-import { GA_MEASUREMENT_ID, loadGa, gaPageview } from "@/lib/analytics";
+import { GA_MEASUREMENT_ID, loadGa, gaPageview, clearGaCookies } from "@/lib/analytics";
 
 const STORAGE_KEY = "osf_cookie_consent"; // "granted" | "denied"
+/** Evento para reabrir el banner desde el enlace "Configurar cookies" del pie. */
+export const OPEN_COOKIE_SETTINGS_EVENT = "osf:open-cookie-settings";
 
 /**
  * Banner de consentimiento + carga de Google Analytics 4.
@@ -29,6 +31,13 @@ const Analytics = () => {
     setReady(true);
   }, []);
 
+  // Permite reabrir el banner desde "Configurar cookies" en el pie de página.
+  useEffect(() => {
+    const openSettings = () => setConsent(null);
+    window.addEventListener(OPEN_COOKIE_SETTINGS_EVENT, openSettings);
+    return () => window.removeEventListener(OPEN_COOKIE_SETTINGS_EVENT, openSettings);
+  }, []);
+
   // Envía vista de página en cada cambio de ruta (solo si hay consentimiento).
   useEffect(() => {
     if (consent === "granted") gaPageview(pathname);
@@ -50,6 +59,7 @@ const Analytics = () => {
     } catch {
       /* ignore */
     }
+    if (consent === "granted") clearGaCookies();
     setConsent("denied");
   };
 

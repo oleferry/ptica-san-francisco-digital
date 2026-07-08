@@ -3,6 +3,7 @@ import { Instagram, Facebook, MapPin, Phone, Mail } from "lucide-react";
 import logo from "@/assets/logo-osf.webp";
 import { SITE } from "@/lib/site";
 import { useSectionNav } from "@/hooks/use-section-nav";
+import { OPEN_COOKIE_SETTINGS_EVENT } from "@/components/Analytics";
 
 const navLinks = [
   { label: "Sobre nosotros", href: "#sobre-nosotros" },
@@ -107,6 +108,14 @@ const Footer = () => {
           <Link to="/politica-de-privacidad" className="hover:text-primary transition-colors">Política de privacidad</Link>
           <span aria-hidden="true">·</span>
           <Link to="/politica-de-cookies" className="hover:text-primary transition-colors">Política de cookies</Link>
+          <span aria-hidden="true">·</span>
+          <button
+            type="button"
+            onClick={() => window.dispatchEvent(new Event(OPEN_COOKIE_SETTINGS_EVENT))}
+            className="hover:text-primary transition-colors underline-offset-2 hover:underline"
+          >
+            Configurar cookies
+          </button>
         </nav>
         <p className="text-sm text-muted-foreground font-sans">
           © {new Date().getFullYear()} {SITE.name} · {SITE.address.city}, {SITE.address.country}

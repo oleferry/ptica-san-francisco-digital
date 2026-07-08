@@ -1,5 +1,8 @@
 import LegalPage from "@/components/LegalPage";
 import { SITE } from "@/lib/site";
+import { OPEN_COOKIE_SETTINGS_EVENT } from "@/components/Analytics";
+
+const LAST_UPDATED = "8 de julio de 2026";
 
 const PoliticaCookies = () => (
   <LegalPage
@@ -8,8 +11,8 @@ const PoliticaCookies = () => (
     path="/politica-de-cookies"
   >
     <p>
-      Este sitio web utiliza cookies. En cumplimiento de la normativa aplicable, te explicamos qué
-      son, cuáles usamos y cómo puedes gestionarlas.
+      Este sitio web utiliza cookies. En cumplimiento de la normativa aplicable (LSSI-CE y RGPD),
+      te explicamos qué son, cuáles usamos y cómo puedes gestionarlas.
     </p>
 
     <h2>1. ¿Qué son las cookies?</h2>
@@ -23,47 +26,85 @@ const PoliticaCookies = () => (
       <strong>Solo instalamos cookies analíticas si das tu consentimiento</strong> a través del
       banner que aparece al entrar. Si lo rechazas, no se activa ningún seguimiento.
     </p>
-    <ul>
-      <li>
-        <strong>Analíticas (Google Analytics):</strong> cookies <code>_ga</code> y{" "}
-        <code>_ga_&lt;ID&gt;</code>, que nos ayudan a entender de forma agregada y anónima cómo se
-        usa la web para mejorarla. Las gestiona Google y suelen caducar a los 2 años. Más
-        información en las{" "}
-        <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">
-          políticas de Google
-        </a>.
-      </li>
-    </ul>
+    <div className="overflow-x-auto">
+      <table>
+        <thead>
+          <tr>
+            <th>Cookie</th>
+            <th>Proveedor</th>
+            <th>Finalidad</th>
+            <th>Duración</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>_ga</code></td>
+            <td>Google Analytics</td>
+            <td>Distinguir usuarios de forma anónima y agregada</td>
+            <td>2 años</td>
+          </tr>
+          <tr>
+            <td><code>_ga_&lt;ID&gt;</code></td>
+            <td>Google Analytics</td>
+            <td>Mantener el estado de la sesión de análisis</td>
+            <td>2 años</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
     <p>
-      Para recordar tu decisión sobre las cookies utilizamos además un pequeño almacenamiento
-      técnico en tu navegador (no es una cookie de seguimiento y es necesario para respetar tu
-      elección).
-    </p>
-    <p>
-      Ten en cuenta que algunas funciones embebidas de terceros (como el calendario de reservas de
-      SimplyBook.me o los formularios de Tally) pueden instalar sus propias cookies en sus
-      respectivos dominios cuando las utilizas, sujetas a sus propias políticas.
+      Más información en las{" "}
+      <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">
+        políticas de Google
+      </a>.
     </p>
 
-    <h2>3. Cómo gestionar o revocar el consentimiento</h2>
+    <h2>3. Almacenamiento técnico (no es seguimiento)</h2>
+    <p>
+      Para recordar tu decisión sobre las cookies guardamos un pequeño dato en tu navegador
+      (localStorage). No es una cookie de seguimiento, no se comparte con terceros y está exento
+      de consentimiento por ser estrictamente necesario (art. 22.2 LSSI-CE).
+    </p>
+
+    <h2>4. Contenido embebido de terceros</h2>
+    <p>
+      El <strong>calendario de reservas (SimplyBook.me)</strong> es un servicio externo. Para
+      evitar cargar cookies de terceros sin que lo decidas, solo se activa cuando pulsas el botón
+      "Cargar el calendario de reservas" en la sección de reservas de la web.
+    </p>
+    <p>
+      El <strong>mapa de ubicación (Google Maps)</strong> se muestra siempre embebido, ya que es
+      información básica de localización del establecimiento; su carga puede implicar una
+      conexión con los servidores de Google, sujeta a sus propias políticas.
+    </p>
+
+    <h2>5. Cómo gestionar o revocar el consentimiento</h2>
     <ul>
       <li>
-        Puedes <strong>retirar tu consentimiento</strong> en cualquier momento borrando las cookies
-        y los datos del sitio desde la configuración de tu navegador; al volver a entrar, te
-        aparecerá de nuevo el banner para elegir.
+        Puedes <strong>cambiar tu decisión en cualquier momento</strong> pulsando{" "}
+        <button
+          type="button"
+          onClick={() => window.dispatchEvent(new Event(OPEN_COOKIE_SETTINGS_EVENT))}
+          className="text-primary underline hover:no-underline"
+        >
+          «Configurar cookies»
+        </button>{" "}
+        al final de esta página o en el pie de cualquier página del sitio.
       </li>
       <li>
-        Puedes <strong>configurar tu navegador</strong> para bloquear o eliminar cookies. Consulta
-        la ayuda de tu navegador (Chrome, Firefox, Safari, Edge…).
+        También puedes <strong>configurar tu navegador</strong> para bloquear o eliminar cookies.
+        Consulta la ayuda de tu navegador (Chrome, Firefox, Safari, Edge…).
       </li>
     </ul>
 
-    <h2>4. Más información</h2>
+    <h2>6. Más información</h2>
     <p>
       Para más detalles sobre cómo tratamos tus datos, consulta nuestra{" "}
       <a href="/politica-de-privacidad">Política de Privacidad</a>. Si tienes dudas, puedes
       escribirnos a {SITE.email}.
     </p>
+
+    <p className="text-sm text-muted-foreground">Última actualización: {LAST_UPDATED}.</p>
   </LegalPage>
 );
 
