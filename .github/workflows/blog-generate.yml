@@ -23,10 +23,11 @@ jobs:
 
       - run: npm ci
 
-      - name: Generar artículo con Claude
+      - name: Generar artículo con Claude (texto) + OpenAI (imagen)
         id: gen
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
         run: node scripts/generate-article.mjs
 
       - name: Abrir Pull Request
@@ -42,4 +43,6 @@ jobs:
             **Se publicará solo dentro de 48 h** si no cierras esta PR.
             Si algo no te encaja, edítalo en esta rama o cierra la PR para descartarlo.
           labels: auto-blog
-          add-paths: src/content/blog/*.md
+          add-paths: |
+            src/content/blog/*.md
+            public/blog-covers/*.jpg
