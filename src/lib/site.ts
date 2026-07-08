@@ -67,6 +67,10 @@ export const SITE = {
     companyName: "Gafasvan, S.L.",
     cif: "B-44902286",
     registeredAddress: "Calle El Salvador, 4, 47680 Mayorga (Valladolid)",
+    registroMercantil: "Registro Mercantil de Valladolid",
+    tomo: "1633",
+    folio: "154",
+    hoja: "VA-33905",
   },
 } as const;
 

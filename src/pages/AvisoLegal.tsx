@@ -21,6 +21,10 @@ const AvisoLegal = () => (
       <li><strong>Nombre comercial:</strong> {SITE.name}</li>
       <li><strong>CIF:</strong> {SITE.legal.cif}</li>
       <li><strong>Domicilio social:</strong> {SITE.legal.registeredAddress}</li>
+      <li>
+        <strong>Datos registrales:</strong> {SITE.legal.registroMercantil}, Tomo{" "}
+        {SITE.legal.tomo}, Folio {SITE.legal.folio}, Hoja {SITE.legal.hoja}
+      </li>
       <li><strong>Establecimiento:</strong> {fullAddress}</li>
       <li><strong>Teléfono:</strong> {SITE.phoneDisplay}</li>
       <li><strong>Email:</strong> {SITE.email}</li>
