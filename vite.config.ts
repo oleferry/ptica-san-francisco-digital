@@ -47,6 +47,7 @@ function writeRss() {
   if (!fs.existsSync(blogDir)) return;
   const esc = (s: string) =>
     String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  const escAttr = (s: string) => esc(s).replace(/"/g, "&quot;");
 
   const items = fs
     .readdirSync(blogDir)
@@ -64,25 +65,36 @@ function writeRss() {
     .sort((a, b) => (a.date < b.date ? 1 : -1));
 
   const xmlItems = items
-    .map(
-      (it) =>
+    .map((it) => {
+      const imgUrl = it.cover ? `${SITE_URL}${it.cover}` : "";
+      // HTML embebido (con la imagen delante) para máxima compatibilidad con
+      // automatizaciones (Zapier/Make/IFTTT) que solo buscan un <img> dentro
+      // del contenido, además de los campos estándar enclosure/media:content.
+      const html = imgUrl
+        ? `<img src="${escAttr(imgUrl)}" alt="${escAttr(it.title)}" />\n<p>${esc(it.description)}</p>`
+        : esc(it.description);
+
+      return (
         `    <item>\n` +
         `      <title>${esc(it.title)}</title>\n` +
         `      <link>${SITE_URL}/blog/${it.slug}</link>\n` +
         `      <guid>${SITE_URL}/blog/${it.slug}</guid>\n` +
         (it.date ? `      <pubDate>${new Date(it.date).toUTCString()}</pubDate>\n` : "") +
-        `      <description>${esc(it.description)}</description>\n` +
-        (it.cover
-          ? `      <enclosure url="${SITE_URL}${it.cover}" type="image/jpeg" />\n` +
-            `      <media:content url="${SITE_URL}${it.cover}" medium="image" />\n`
+        `      <description><![CDATA[${html}]]></description>\n` +
+        `      <content:encoded><![CDATA[${html}]]></content:encoded>\n` +
+        (imgUrl
+          ? `      <enclosure url="${imgUrl}" type="image/jpeg" length="0" />\n` +
+            `      <media:content url="${imgUrl}" medium="image" type="image/jpeg" />\n` +
+            `      <media:thumbnail url="${imgUrl}" />\n`
           : "") +
-        `    </item>`,
-    )
+        `    </item>`
+      );
+    })
     .join("\n");
 
   const xml =
     `<?xml version="1.0" encoding="UTF-8"?>\n` +
-    `<rss version="2.0" xmlns:media="http://search.yahoo.com/mrss/">\n  <channel>\n` +
+    `<rss version="2.0" xmlns:media="http://search.yahoo.com/mrss/" xmlns:content="http://purl.org/rss/1.0/modules/content/">\n  <channel>\n` +
     `    <title>Blog · Óptica San Francisco</title>\n` +
     `    <link>${SITE_URL}/blog</link>\n` +
     `    <description>Consejos de salud visual de Óptica San Francisco (León).</description>\n` +
