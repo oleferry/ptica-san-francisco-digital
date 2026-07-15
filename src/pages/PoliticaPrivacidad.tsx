@@ -1,7 +1,7 @@
 import LegalPage from "@/components/LegalPage";
 import { SITE } from "@/lib/site";
 
-const LAST_UPDATED = "8 de julio de 2026";
+const LAST_UPDATED = "14 de julio de 2026";
 
 const PoliticaPrivacidad = () => (
   <LegalPage
@@ -42,6 +42,15 @@ const PoliticaPrivacidad = () => (
         proporciones, para responderte y atender tu consulta.
       </li>
       <li>
+        <strong>Eres cliente y nos has facilitado tu teléfono</strong>: podemos guardar tu
+        contacto para mostrarte novedades a través de nuestro <strong>Estado de WhatsApp</strong>{" "}
+        o incluirte en una <strong>lista de difusión</strong> de WhatsApp con información sobre
+        servicios similares a los que ya has contratado (por ejemplo, recordatorios de revisión
+        visual). Solo lo hacemos si nos tienes guardado como contacto o has interactuado antes con
+        nosotros por ese canal, y siempre puedes pedirnos que dejemos de escribirte respondiendo
+        "BAJA" o por cualquier otro medio de contacto.
+      </li>
+      <li>
         <strong>Nos facilitas tu email para recibir novedades</strong> (en la óptica o por otros
         canales, gestionado con MailerLite): para enviarte información comercial, solo si lo has
         solicitado o has dado tu consentimiento.
@@ -55,8 +64,14 @@ const PoliticaPrivacidad = () => (
 
     <h2>3. Base legal</h2>
     <ul>
-      <li><strong>Tu consentimiento</strong> (cookies analíticas, envío de comunicaciones comerciales).</li>
+      <li><strong>Tu consentimiento</strong> (cookies analíticas, envío de comunicaciones comerciales por email).</li>
       <li><strong>La gestión de tu solicitud o relación con nosotros</strong> (citas, consultas, formularios).</li>
+      <li>
+        <strong>La relación previa como cliente</strong>, al amparo del artículo 21.2 de la
+        LSSI-CE, para enviarte por WhatsApp información sobre productos o servicios similares a
+        los que ya has contratado, siempre ofreciéndote una forma sencilla de oponerte tanto al
+        contactar contigo como en cada comunicación posterior.
+      </li>
       <li><strong>El interés legítimo</strong> en atender y mejorar nuestra atención.</li>
     </ul>
 
@@ -82,7 +97,7 @@ const PoliticaPrivacidad = () => (
       <li><strong>SimplyBook.me</strong> — gestión de reservas de cita. <a href="https://simplybook.me/en/policy" target="_blank" rel="noopener noreferrer">Política de privacidad</a>.</li>
       <li><strong>Tally</strong> — formularios. <a href="https://tally.so/help/terms-and-privacy" target="_blank" rel="noopener noreferrer">Términos y privacidad</a>.</li>
       <li><strong>MailerLite</strong> — envío de comunicaciones por email (si te suscribes). <a href="https://www.mailerlite.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer">Política de privacidad</a>.</li>
-      <li><strong>Meta (WhatsApp)</strong> — comunicación por WhatsApp, si eliges ese canal. <a href="https://www.whatsapp.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer">Política de privacidad</a>.</li>
+      <li><strong>Meta (WhatsApp)</strong> — comunicación por WhatsApp, tanto si nos escribes tú como si te enviamos novedades como cliente (Estado o lista de difusión). <a href="https://www.whatsapp.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer">Política de privacidad</a>.</li>
     </ul>
     <p>
       No cedemos tus datos a terceros con fines propios, salvo obligación legal. Algunos de estos
