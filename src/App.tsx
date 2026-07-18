@@ -49,7 +49,11 @@ export const routes: RouteRecord[] = [
       { path: "aviso-legal", element: <AvisoLegal /> },
       { path: "politica-de-privacidad", element: <PoliticaPrivacidad /> },
       { path: "politica-de-cookies", element: <PoliticaCookies /> },
-      // El catch-all es solo de cliente (no se pre-renderiza).
+      // "404" SÍ se pre-renderiza: Vercel sirve automáticamente dist/404.html
+      // (con status 404 real) para cualquier ruta que no exista.
+      { path: "404", element: <NotFound /> },
+      // El catch-all es solo de cliente (por si la SPA navega a una ruta
+      // desconocida sin recargar la página).
       { path: "*", element: <NotFound /> },
     ],
   },
