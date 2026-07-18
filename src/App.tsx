@@ -9,6 +9,7 @@ import Analytics from "@/components/Analytics";
 import Index from "./pages/Index.tsx";
 import BlogIndex from "./pages/BlogIndex.tsx";
 import BlogPost from "./pages/BlogPost.tsx";
+import InstagramRedirect from "./pages/InstagramRedirect.tsx";
 import AvisoLegal from "./pages/AvisoLegal.tsx";
 import PoliticaPrivacidad from "./pages/PoliticaPrivacidad.tsx";
 import PoliticaCookies from "./pages/PoliticaCookies.tsx";
@@ -44,6 +45,7 @@ export const routes: RouteRecord[] = [
         element: <BlogPost />,
         getStaticPaths: () => articles.map((a) => `/blog/${a.slug}`),
       },
+      { path: "instagram", element: <InstagramRedirect /> },
       { path: "aviso-legal", element: <AvisoLegal /> },
       { path: "politica-de-privacidad", element: <PoliticaPrivacidad /> },
       { path: "politica-de-cookies", element: <PoliticaCookies /> },
