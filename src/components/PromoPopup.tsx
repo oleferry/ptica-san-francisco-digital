@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Sun } from "lucide-react";
+import { X, Hammer } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { PROMO } from "@/lib/promo";
 
@@ -11,6 +11,9 @@ const PromoPopup = () => {
 
   useEffect(() => {
     if (!PROMO.enabled) return;
+
+    // ¿Ya pasó la fecha de desactivación automática?
+    if (PROMO.activeUntil && new Date() >= new Date(`${PROMO.activeUntil}T00:00:00`)) return;
 
     // ¿Ya se descartó hace poco?
     try {
@@ -86,7 +89,7 @@ const PromoPopup = () => {
 
             <div className="bg-primary/10 px-8 pt-8 pb-6 text-center">
               <div className="w-12 h-12 rounded-full bg-primary/15 flex items-center justify-center mx-auto mb-3">
-                <Sun className="w-6 h-6 text-primary" />
+                <Hammer className="w-6 h-6 text-primary" />
               </div>
               {PROMO.badge && (
                 <p className="text-xs font-sans font-semibold uppercase tracking-widest text-primary mb-1">
